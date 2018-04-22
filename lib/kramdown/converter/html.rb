@@ -114,6 +114,11 @@ module Kramdown
           end
           code_attr = {}
           code_attr['class'] = "language-#{lang}" if lang
+
+          # workaround for google-code-prettify
+          attr['class'] ||= ""
+          attr['class'] << " prettyprint"
+
           "#{' '*indent}<pre#{html_attributes(attr)}><code#{html_attributes(code_attr)}>#{result}\n</code></pre>\n"
         end
       end
